@@ -60,7 +60,7 @@ then
 
 
     echo "Automatic backup created!! It will run everyday at $TIME"
-
+    sleep 2
     echo Done
 else
     echo -e "${RED} Droplets does not exist!! Kapture Not possible"
