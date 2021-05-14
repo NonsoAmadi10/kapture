@@ -24,10 +24,11 @@ fi
 sleep 2
 
 
-echo "${PURPLE} ***** Creating User Config ***** \033[0m "
+echo "${PURPLE} ***** Creating User Config ***** \033[35m "
 
 mkdir ~/.config
 
+sleep 2
 
 echo -e "${BLUE} ******** Installing doctl ********* \033[40m"
 
@@ -36,30 +37,35 @@ sudo snap install doctl
 sleep 2
 
 
-sleep 3
+echo -e "{BLUE} ----- Authenticating DO User ----- \033[40m"
+
+doctl auth init 
+
+sleep 1
+
 
 echo -n "Please enter the ID of the digital ocean droplet you want to Kapture: ";
 read DROPLET_ID;
 
 echo "checking to see if droplet exist "
 
-if [[ -x "$((  doctl compute snapshot list | awk '/{$DROPLET_ID}/{print}'))" ]]
+if [[ ! -z $( doctl compute droplet list | awk /$DROPLET_ID/{print}) ]]
 
 then 
-    
     echo -n "At what time do you want this kapture to run?"
     read TIME;
     echo "Creating automated snapshots on your droplet. Please Wait..."
 
-    crontab -l | { cat; echo "* {$TIME} * * * tugboat snapshot {$DROPLET_ID}"; } | crontab -
+    crontab -l | { cat; echo "* $TIME * * * doctl compute droplet-action snapshot {$DROPLET_ID} --snapshot-name New --wait"; } | crontab -
 
 
-    echo "Automatic backup created!! It will run everyday at 23:00pm"
+    echo "Automatic backup created!! It will run everyday at $TIME"
 
     echo Done
 else
     echo -e "${RED} Droplets does not exist!! Kapture Not possible"
 fi 
 
-echo -e " ${BLUE} Send me bitcoin @jackhoudini on the bitnob app \033[0m"
+
+echo -e " ${BLUE} Send me bitcoin @jackhoudini on the bitnob app \033[0m";
 
