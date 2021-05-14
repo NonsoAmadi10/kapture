@@ -10,7 +10,7 @@ A simple automated bash tool that takes snapshots for all your Digital Ocean Dro
 
 ### Installation and Usage 
 
-> git clone https://github.com/NonsoAmadi10/kapture.git \
+> git clone git@github.com:bitnob/kapture.git \
   cd kapture \
   bash kapture.bash 
 
