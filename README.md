@@ -18,7 +18,9 @@ A simple automated bash tool that takes snapshots for all your Digital Ocean Dro
 
 ### Background Context
 
-- It is advisable to run this script at a time when your servers won't be expecting heavy traffic so that there won't be data inconsistency in your snapshots
+- It is advisable to run this script at a time when your servers won't be expecting heavy traffic so that there won't be data inconsistency in your snapshots.
+
+- Auto deleting of previous snapshot is not available yet. If you find a way to implement that before I do, kindly fork this repo and raise a PR, then I would be happy to merge your PR
 
 ### To cancel the automation simply run
 
