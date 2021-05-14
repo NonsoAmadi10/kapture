@@ -5,6 +5,7 @@ A simple automated bash tool that takes snapshots for all your Digital Ocean Dro
 ### Prerequisites
 
 - `DIGITAL OCEAN API KEY` - Click [Here](https://cloud.digitalocean.com/account/api/tokens) to get one.
+- `DIGITAL OCEAN DROPLET ID` 
 - Bash 
 
 
