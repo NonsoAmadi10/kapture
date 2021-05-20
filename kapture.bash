@@ -56,7 +56,7 @@ then
     read TIME;
     echo "Creating automated snapshots on your droplet. Please Wait..."
 
-    crontab -l | { cat; echo "* $TIME * * * doctl compute droplet-action snapshot {$DROPLET_ID} --snapshot-name New --wait"; } | crontab -
+    crontab -l | { cat; echo "* $TIME * * * doctl compute droplet-action snapshot $DROPLET_ID --snapshot-name New --wait"; } | crontab -
 
 
     echo "Automatic backup created!! It will run everyday at $TIME"
