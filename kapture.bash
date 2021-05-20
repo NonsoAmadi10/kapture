@@ -4,6 +4,8 @@ RED='\033[0;31m'
 BLUE='\033[40;38;5;82m'
 PURPLE='\033[0;35m'
 
+NOON=12
+
 source ./install_snap.bash
 
 echo "------- Welcome to Kapture by Houdini -----------"
@@ -56,11 +58,15 @@ then
     read TIME;
     echo "Creating automated snapshots on your droplet. Please Wait..."
 
-    crontab -l | { cat; echo "* $TIME * * * doctl compute droplet-action snapshot $DROPLET_ID --snapshot-name New --wait"; } | crontab -
+    crontab -l | { cat; echo "0 $TIME * * * doctl compute droplet-action snapshot $DROPLET_ID --snapshot-name New --wait"; } | crontab -
 
-
-    echo "Automatic backup created!! It will run everyday at $TIME"
+    if [[ "$TIME" -lt "$NOON" ]]
+    echo "Automatic backup created!! It will run everyday at $TIME:00am"
+    else 
+    echo "Automatic snapshot created!! It will run everday at $TIME:00pm"
+    fi
     sleep 2
+
     echo Done
 else
     echo -e "${RED} Droplets does not exist!! Kapture Not possible"
